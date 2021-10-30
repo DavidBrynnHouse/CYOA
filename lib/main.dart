@@ -22,16 +22,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Adventure Addict',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.yellow,
       ),
       routes: {
         '/': (context) => WelcomeScreen(),
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegistrationScreen(),
-        '/feed': (context) => FeedPage(title: 'CYOA'),
-        '/post': (context) => PostPage(title: 'CYOA'),
-        '/story': (context) => StoryPage(title: 'CYOA'),
-        '/ending': (context) => EndingPage(title: 'CYOA')
+        '/feed': (context) => FeedPage(title: 'Adventure Addict'),
+        '/post': (context) => PostPage(title: 'Adventure Addict'),
+        '/story': (context) => StoryPage(title: 'Adventure Addict'),
+        '/ending': (context) => EndingPage(title: 'Adventure Addict')
       },
     );
   }

@@ -40,25 +40,31 @@ class _StoryPageState extends State<StoryPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/ending',
-                      arguments: EndingArguments(args.firstEnding),
-                    );
-                  },
-                  child: Text(args.firstOption),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/ending',
+                        arguments: EndingArguments(args.firstEnding),
+                      );
+                    },
+                    child: Text(args.firstOption),
+                  ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/ending',
-                      arguments: EndingArguments(args.secondEnding),
-                    );
-                  },
-                  child: Text(args.secondOption),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/ending',
+                        arguments: EndingArguments(args.secondEnding),
+                      );
+                    },
+                    child: Text(args.secondOption),
+                  ),
                 ),
               ],
             )

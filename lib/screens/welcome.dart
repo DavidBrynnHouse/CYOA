@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -16,13 +17,26 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                TextButton(
+                Image(image: AssetImage('assets/Adventure_Addict_Logo.png')),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.black),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.yellow),
+                  ),
                   child: Text('Log in'),
                   onPressed: () {
                     Navigator.pushNamed(context, '/login');
                   },
                 ),
-                TextButton(
+                ElevatedButton(
+                    style: ButtonStyle(
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                    ),
                     child: Text('Register'),
                     onPressed: () {
                       Navigator.pushNamed(context, '/register');

@@ -65,7 +65,13 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 24.0,
             ),
-            TextButton(
+            ElevatedButton(
+                style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.black),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.yellow),
+                ),
                 child: Text('Log In'),
                 onPressed: () async {
                   setState(() {

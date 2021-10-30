@@ -77,9 +77,15 @@ class _FeedPageState extends State<FeedPage> {
           padding: const EdgeInsets.all(8),
           itemCount: titles.length,
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              // color: Colors.amber[colorCodes[index]],
-              child: GestureDetector(
+            print('Something!!!!!!!!');
+            if (titles.isEmpty) {
+              return const Center(
+                child:
+                    Text('Click the plus button to write your own adventure!'),
+              );
+            } else {
+              print(titles.length);
+              return GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(
                     context,
@@ -97,12 +103,21 @@ class _FeedPageState extends State<FeedPage> {
                 },
                 child: Column(
                   children: [
-                    Text(titles[index]),
-                    Text("By: ${authors[index]}"),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        titles[index],
+                        style: TextStyle(fontSize: 25),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("By: ${authors[index]}"),
+                    ),
                   ],
                 ),
-              ),
-            );
+              );
+            }
           },
           separatorBuilder: (BuildContext context, int index) =>
               const Divider(),

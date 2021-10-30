@@ -115,7 +115,7 @@ class _PostPageState extends State<PostPage> {
                 ),
               ],
             ),
-            TextButton(
+            ElevatedButton(
               onPressed: () {
                 addPost();
                 Navigator.of(context).pop();
