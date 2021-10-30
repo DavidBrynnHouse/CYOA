@@ -1,6 +1,7 @@
 import 'package:cyoa/models/story_arguments.dart';
+import 'package:cyoa/screens/post.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FeedPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class FeedPage extends StatefulWidget {
 
 class _FeedPageState extends State<FeedPage> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
   final List<String> titles = <String>[];
   final List<String> authors = <String>[];
   final List<String> beginnings = <String>[];
@@ -25,13 +27,13 @@ class _FeedPageState extends State<FeedPage> {
   void getPosts() async {
     await FirebaseFirestore.instance
         .collection('posts')
-        .doc('THISISAFAKEUSER')
+        .doc(loggedinUser.uid)
         .collection('userPosts')
         .get()
         .then((QuerySnapshot querySnapshot) {
       for (var doc in querySnapshot.docs) {
         titles.add(doc['title']);
-        authors.add(doc['firstEnding']);
+        authors.add(doc['author']);
         beginnings.add(doc['beginning']);
         firstOptions.add(doc['firstOption']);
         secondOptions.add(doc['secondOption']);
@@ -45,8 +47,20 @@ class _FeedPageState extends State<FeedPage> {
   @override
   void initState() {
     super.initState();
+    getCurrentUser();
+  }
 
-    getPosts();
+  //using this function you can use the credentials of the user
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser;
+      if (user != null) {
+        loggedinUser = user;
+        getPosts();
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override

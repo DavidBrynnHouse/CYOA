@@ -2,6 +2,8 @@ import 'package:cyoa/screens/ending.dart';
 import 'package:cyoa/screens/story.dart';
 import 'package:flutter/material.dart';
 import 'screens/login.dart';
+import 'screens/welcome.dart';
+import 'screens/register.dart';
 import 'screens/feed.dart';
 import 'screens/post.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,7 +25,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => RegistrationScreen(),
+        '/': (context) => WelcomeScreen(),
+        '/login': (context) => LoginScreen(),
+        '/register': (context) => RegistrationScreen(),
         '/feed': (context) => FeedPage(title: 'CYOA'),
         '/post': (context) => PostPage(title: 'CYOA'),
         '/story': (context) => StoryPage(title: 'CYOA'),

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+late User loggedinUser;
 
 class PostPage extends StatefulWidget {
   const PostPage({Key? key, required this.title}) : super(key: key);
@@ -11,17 +15,38 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
+  final _auth = FirebaseAuth.instance;
   final titleController = TextEditingController();
   final beginningController = TextEditingController();
   final firstOptionController = TextEditingController();
   final secondOptionController = TextEditingController();
   final firstEndingController = TextEditingController();
   final secondEndingController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  //using this function you can use the credentials of the user
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser;
+      if (user != null) {
+        loggedinUser = user;
+        print(loggedinUser.displayName);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     CollectionReference newPost = FirebaseFirestore.instance
         .collection('posts')
-        .doc('THISISAFAKEUSER')
+        .doc(loggedinUser.uid)
         .collection('userPosts');
     Future<void> addPost() {
       return newPost
@@ -31,7 +56,8 @@ class _PostPageState extends State<PostPage> {
             'firstOption': firstOptionController.text,
             'secondOption': secondOptionController.text,
             'firstEnding': firstEndingController.text,
-            'secondEnding': secondEndingController.text
+            'secondEnding': secondEndingController.text,
+            'author': loggedinUser.displayName ?? 'Anonymous'
           })
           .then((value) => print("Post Added"))
           .catchError((error) => print("Failed to add post: $error"));

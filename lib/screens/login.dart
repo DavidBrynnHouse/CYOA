@@ -1,32 +1,32 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 //code for designing the UI of our text field where the user writes his email id or password
 
 const kTextFieldDecoration = InputDecoration(
-  hintText: 'Enter a value',
-  hintStyle: TextStyle(color: Colors.grey),
-  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-  border: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-  ),
-  enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-  ),
-  focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-  ),
-);
+    hintText: 'Enter a value',
+    hintStyle: TextStyle(color: Colors.grey),
+    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(32.0)),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+      borderRadius: BorderRadius.all(Radius.circular(32.0)),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+      borderRadius: BorderRadius.all(Radius.circular(32.0)),
+    ));
 
-class RegistrationScreen extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
-  final _auth = FirebaseAuth.instance;
+final _auth = FirebaseAuth.instance;
+
+class _LoginScreenState extends State<LoginScreen> {
   late String email;
   late String password;
   bool showSpinner = false;
@@ -48,7 +48,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   //Do something with the user input.
                 },
                 decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your email')),
+                  hintText: 'Enter your email',
+                )),
             SizedBox(
               height: 8.0,
             ),
@@ -60,30 +61,29 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   //Do something with the user input.
                 },
                 decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your Password')),
+                    hintText: 'Enter your password.')),
             SizedBox(
               height: 24.0,
             ),
             TextButton(
-              child: Text('Login'),
-              onPressed: () async {
-                setState(() {
-                  showSpinner = true;
-                });
-                try {
-                  final newUser = await _auth.createUserWithEmailAndPassword(
-                      email: email, password: password);
-                  if (newUser != null) {
-                    Navigator.pushNamed(context, '/feed');
+                child: Text('Log In'),
+                onPressed: () async {
+                  setState(() {
+                    showSpinner = true;
+                  });
+                  try {
+                    final user = await _auth.signInWithEmailAndPassword(
+                        email: email, password: password);
+                    if (user != null) {
+                      Navigator.pushNamed(context, '/feed');
+                    }
+                  } catch (e) {
+                    print(e);
                   }
-                } catch (e) {
-                  print(e);
-                }
-                setState(() {
-                  showSpinner = false;
-                });
-              },
-            )
+                  setState(() {
+                    showSpinner = false;
+                  });
+                }),
           ],
         ),
       ),
