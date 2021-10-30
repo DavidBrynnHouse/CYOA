@@ -1,3 +1,4 @@
+import 'package:cyoa/screens/ending.dart';
 import 'package:cyoa/screens/story.dart';
 import 'package:flutter/material.dart';
 import 'screens/login.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => LoginPage(title: 'CYOA'),
         '/feed': (context) => FeedPage(title: 'CYOA'),
         '/post': (context) => PostPage(title: 'CYOA'),
-        '/story': (context) => StoryPage(title: 'CYOA')
+        '/story': (context) => StoryPage(title: 'CYOA'),
+        '/ending': (context) => EndingPage(title: 'CYOA')
       },
     );
   }

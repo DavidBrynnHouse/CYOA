@@ -32,6 +32,11 @@ class _FeedPageState extends State<FeedPage> {
       for (var doc in querySnapshot.docs) {
         titles.add(doc['title']);
         authors.add(doc['firstEnding']);
+        beginnings.add(doc['beginning']);
+        firstOptions.add(doc['firstOption']);
+        secondOptions.add(doc['secondOption']);
+        firstEndings.add(doc['firstEnding']);
+        secondEndings.add(doc['secondEnding']);
       }
       setState(() {});
     });
@@ -62,15 +67,19 @@ class _FeedPageState extends State<FeedPage> {
               // color: Colors.amber[colorCodes[index]],
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/story',
-                      arguments: StoryArguments(
-                        titles[index],
-                        beginnings[index],
-                        firstOptions[index],
-                        secondOptions[index],
-                        firstEndings[index],
-                        secondEndings[index],
-                      ));
+                  Navigator.pushNamed(
+                    context,
+                    '/story',
+                    arguments: StoryArguments(
+                      titles[index],
+                      authors[index],
+                      beginnings[index],
+                      firstOptions[index],
+                      secondOptions[index],
+                      firstEndings[index],
+                      secondEndings[index],
+                    ),
+                  );
                 },
                 child: Column(
                   children: [
