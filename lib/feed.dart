@@ -41,15 +41,20 @@ class _FeedPageState extends State<FeedPage> {
           itemBuilder: (BuildContext context, int index) {
             return Container(
               color: Colors.amber[colorCodes[index]],
-              child: Column(
-                children: [
-                  Text("author"),
-                  Text("Story"),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text("Comments"),
-                  ),
-                ],
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/story');
+                },
+                child: Column(
+                  children: [
+                    Text("author"),
+                    Text("Story"),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text("Comments"),
+                    ),
+                  ],
+                ),
               ),
             );
           },
@@ -59,8 +64,7 @@ class _FeedPageState extends State<FeedPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          addUser();
-          // Navigator.pushNamed(context, '/post');
+          Navigator.pushNamed(context, '/post');
         },
         child: Icon(
           Icons.add,

@@ -1,3 +1,4 @@
+import 'package:cyoa/story.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
 import 'feed.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => LoginPage(title: 'CYOA'),
         '/feed': (context) => FeedPage(title: 'CYOA'),
-        '/post': (context) => PostPage(title: 'CYOA')
+        '/post': (context) => PostPage(title: 'CYOA'),
+        '/story': (context) => StoryPage(title: 'CYOA')
       },
     );
   }
