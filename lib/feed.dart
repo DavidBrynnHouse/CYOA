@@ -28,7 +28,9 @@ class _FeedPageState extends State<FeedPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/post');
+        },
         child: Icon(
           Icons.add,
           size: 30,

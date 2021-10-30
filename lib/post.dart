@@ -19,7 +19,9 @@ class _PostPageState extends State<PostPage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          children: <Widget>[
+            Text('This is where the new posts will be created'),
+          ],
         ),
       ),
     );
