@@ -20,16 +20,27 @@ class _FeedPageState extends State<FeedPage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: ListView.builder(
-            padding: const EdgeInsets.all(8),
-            itemCount: entries.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                height: 50,
-                color: Colors.amber[colorCodes[index]],
-                child: Center(child: Text('Story ${entries[index]}')),
-              );
-            }),
+        child: ListView.separated(
+          padding: const EdgeInsets.all(8),
+          itemCount: entries.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              color: Colors.amber[colorCodes[index]],
+              child: Column(
+                children: [
+                  Text("author"),
+                  Text("Story"),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text("Comments"),
+                  ),
+                ],
+              ),
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) =>
+              const Divider(),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
