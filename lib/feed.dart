@@ -13,16 +13,20 @@ class FeedPage extends StatefulWidget {
 
 class _FeedPageState extends State<FeedPage> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  final List<String> entries = <String>[];
+  final List<String> titles = <String>[];
+  final List<String> authors = <String>[];
   final List<int> colorCodes = <int>[600, 500, 100];
 
   void getPosts() async {
     await FirebaseFirestore.instance
-        .collection('users')
+        .collection('posts')
+        .doc('THISISAFAKEUSER')
+        .collection('userPosts')
         .get()
         .then((QuerySnapshot querySnapshot) {
       for (var doc in querySnapshot.docs) {
-        entries.add(doc['title']);
+        titles.add(doc['beginning']);
+        authors.add(doc['firstEnding']);
       }
       setState(() {});
     });
@@ -37,17 +41,8 @@ class _FeedPageState extends State<FeedPage> {
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference users = firestore.collection('users');
+    CollectionReference posts = firestore.collection('users');
     setState(() {});
-    Future<void> addUser() {
-      // Call the user's CollectionReference to add a new user
-      return users
-          .add({
-            'test': 'test' // 42
-          })
-          .then((value) => print("User Added"))
-          .catchError((error) => print("Failed to add user: $error"));
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -56,7 +51,7 @@ class _FeedPageState extends State<FeedPage> {
       body: Center(
         child: ListView.separated(
           padding: const EdgeInsets.all(8),
-          itemCount: entries.length,
+          itemCount: titles.length,
           itemBuilder: (BuildContext context, int index) {
             return Container(
               // color: Colors.amber[colorCodes[index]],
@@ -66,12 +61,8 @@ class _FeedPageState extends State<FeedPage> {
                 },
                 child: Column(
                   children: [
-                    Text("author"),
-                    Text(entries[index]),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text("Comments"),
-                    ),
+                    Text(titles[index]),
+                    Text("By: ${authors[index]}"),
                   ],
                 ),
               ),
