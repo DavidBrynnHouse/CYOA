@@ -20,7 +20,31 @@ class _PostPageState extends State<PostPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('This is where the new posts will be created'),
+            const Padding(
+              padding: EdgeInsets.all(12.0),
+              child: TextField(
+                maxLines: null,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Start writing your story here',
+                  isDense: true, // Added this
+                  contentPadding: EdgeInsets.all(50),
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: Text('Left'),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text('Right'),
+                ),
+              ],
+            )
           ],
         ),
       ),

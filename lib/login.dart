@@ -20,8 +20,8 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(12.0),
               child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -29,8 +29,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(12.0),
               child: TextField(
                 obscureText: true,
                 decoration: InputDecoration(
@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                 print("logged in");
                 Navigator.pushNamed(context, '/feed');
               },
-              child: Text('Login'),
+              child: const Text('Login'),
             ),
           ],
         ),

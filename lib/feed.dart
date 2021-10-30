@@ -10,6 +10,9 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
+  final List<String> entries = <String>['A', 'B', 'C'];
+  final List<int> colorCodes = <int>[600, 500, 100];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,15 +20,16 @@ class _FeedPageState extends State<FeedPage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextButton(
-              onPressed: () {},
-              child: Text('This is where the feed will go'),
-            ),
-          ],
-        ),
+        child: ListView.builder(
+            padding: const EdgeInsets.all(8),
+            itemCount: entries.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                height: 50,
+                color: Colors.amber[colorCodes[index]],
+                child: Center(child: Text('Story ${entries[index]}')),
+              );
+            }),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
