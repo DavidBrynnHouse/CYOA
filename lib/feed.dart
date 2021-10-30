@@ -13,13 +13,32 @@ class FeedPage extends StatefulWidget {
 
 class _FeedPageState extends State<FeedPage> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  final List<String> entries = <String>['A', 'B', 'C'];
+  final List<String> entries = <String>[];
   final List<int> colorCodes = <int>[600, 500, 100];
+
+  void getPosts() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      for (var doc in querySnapshot.docs) {
+        entries.add(doc['title']);
+      }
+      setState(() {});
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    getPosts();
+  }
 
   @override
   Widget build(BuildContext context) {
     CollectionReference users = firestore.collection('users');
-
+    setState(() {});
     Future<void> addUser() {
       // Call the user's CollectionReference to add a new user
       return users
@@ -40,7 +59,7 @@ class _FeedPageState extends State<FeedPage> {
           itemCount: entries.length,
           itemBuilder: (BuildContext context, int index) {
             return Container(
-              color: Colors.amber[colorCodes[index]],
+              // color: Colors.amber[colorCodes[index]],
               child: GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, '/story');
@@ -48,7 +67,7 @@ class _FeedPageState extends State<FeedPage> {
                 child: Column(
                   children: [
                     Text("author"),
-                    Text("Story"),
+                    Text(entries[index]),
                     TextButton(
                       onPressed: () {},
                       child: Text("Comments"),
