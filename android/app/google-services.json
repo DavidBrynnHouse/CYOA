@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "653694064601",
+    "firebase_url": "https://cyoa-fefba-default-rtdb.firebaseio.com",
+    "project_id": "cyoa-fefba",
+    "storage_bucket": "cyoa-fefba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653694064601:android:649426ecea6fea13e5abc8",
+        "android_client_info": {
+          "package_name": "com.example.cyoa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653694064601-ua81pvfpkbq1sso5u2pj5ucdpa5m1m7h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwZZrXe4ODtuVI6CrwHdnNqAwlfkxteWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653694064601-ua81pvfpkbq1sso5u2pj5ucdpa5m1m7h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "653694064601-5q3d65ann2qoqe0hk293noi0q94vq78b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cyoa"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
