@@ -18,12 +18,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Choose Your Own Adventure',
+      title: 'Adventure Addict',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => LoginPage(title: 'CYOA'),
+        '/': (context) => RegistrationScreen(),
         '/feed': (context) => FeedPage(title: 'CYOA'),
         '/post': (context) => PostPage(title: 'CYOA'),
         '/story': (context) => StoryPage(title: 'CYOA'),
