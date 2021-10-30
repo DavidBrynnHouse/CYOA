@@ -1,3 +1,4 @@
+import 'package:cyoa/models/story_arguments.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,7 +16,11 @@ class _FeedPageState extends State<FeedPage> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   final List<String> titles = <String>[];
   final List<String> authors = <String>[];
-  final List<int> colorCodes = <int>[600, 500, 100];
+  final List<String> beginnings = <String>[];
+  final List<String> firstOptions = <String>[];
+  final List<String> secondOptions = <String>[];
+  final List<String> firstEndings = <String>[];
+  final List<String> secondEndings = <String>[];
 
   void getPosts() async {
     await FirebaseFirestore.instance
@@ -25,7 +30,7 @@ class _FeedPageState extends State<FeedPage> {
         .get()
         .then((QuerySnapshot querySnapshot) {
       for (var doc in querySnapshot.docs) {
-        titles.add(doc['beginning']);
+        titles.add(doc['title']);
         authors.add(doc['firstEnding']);
       }
       setState(() {});
@@ -57,7 +62,15 @@ class _FeedPageState extends State<FeedPage> {
               // color: Colors.amber[colorCodes[index]],
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/story');
+                  Navigator.pushNamed(context, '/story',
+                      arguments: StoryArguments(
+                        titles[index],
+                        beginnings[index],
+                        firstOptions[index],
+                        secondOptions[index],
+                        firstEndings[index],
+                        secondEndings[index],
+                      ));
                 },
                 child: Column(
                   children: [

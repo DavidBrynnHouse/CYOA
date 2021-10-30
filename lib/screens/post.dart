@@ -11,6 +11,7 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
+  final titleController = TextEditingController();
   final beginningController = TextEditingController();
   final firstOptionController = TextEditingController();
   final secondOptionController = TextEditingController();
@@ -25,6 +26,7 @@ class _PostPageState extends State<PostPage> {
     Future<void> addPost() {
       return newPost
           .add({
+            'title': titleController.text,
             'beginning': beginningController.text,
             'firstOption': firstOptionController.text,
             'secondOption': secondOptionController.text,
@@ -43,6 +45,10 @@ class _PostPageState extends State<PostPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            EnterStoryWidget(
+              text: 'Name your story',
+              controller: titleController,
+            ),
             EnterStoryWidget(
               text: 'Start writing your story here',
               controller: beginningController,

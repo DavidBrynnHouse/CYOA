@@ -1,8 +1,8 @@
-import 'package:cyoa/story.dart';
+import 'package:cyoa/screens/story.dart';
 import 'package:flutter/material.dart';
-import 'login.dart';
-import 'feed.dart';
-import 'post.dart';
+import 'screens/login.dart';
+import 'screens/feed.dart';
+import 'screens/post.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
