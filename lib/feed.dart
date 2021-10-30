@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class FeedPage extends StatefulWidget {
   const FeedPage({Key? key, required this.title}) : super(key: key);
 
@@ -10,11 +12,24 @@ class FeedPage extends StatefulWidget {
 }
 
 class _FeedPageState extends State<FeedPage> {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   final List<String> entries = <String>['A', 'B', 'C'];
   final List<int> colorCodes = <int>[600, 500, 100];
 
   @override
   Widget build(BuildContext context) {
+    CollectionReference users = firestore.collection('users');
+
+    Future<void> addUser() {
+      // Call the user's CollectionReference to add a new user
+      return users
+          .add({
+            'test': 'test' // 42
+          })
+          .then((value) => print("User Added"))
+          .catchError((error) => print("Failed to add user: $error"));
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -44,7 +59,8 @@ class _FeedPageState extends State<FeedPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/post');
+          addUser();
+          // Navigator.pushNamed(context, '/post');
         },
         child: Icon(
           Icons.add,
